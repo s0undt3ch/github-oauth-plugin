@@ -46,6 +46,7 @@
         <connection>scm:git:ssh://github.com/s0undt3ch/github-oauth-plugin.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/s0undt3ch/github-oauth-plugin.git</developerConnection>
         <url>https://github.com/s0undt3ch/github-oauth-plugin</url>
+        <tag>HEAD</tag>
     </scm>
 
   <!-- Use repositories suggested in plugin tutorial: https://wiki.jenkins-ci.org/display/JENKINS/Plugin+tutorial -->
@@ -117,6 +118,15 @@
     <build>
         <plugins>
             <plugin>
+              <artifactId>maven-release-plugin</artifactId>
+              <version>2.4.1</version>
+              <configuration>
+                <useReleaseProfile>false</useReleaseProfile>
+                <releaseProfiles>release</releaseProfiles>
+                <autoVersionSubmodules>true</autoVersionSubmodules>
+              </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
@@ -139,7 +149,16 @@
 
         <pluginManagement>
             <plugins>
-                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+              <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+                <plugin>
+                  <artifactId>maven-release-plugin</artifactId>
+                  <version>2.4.1</version>
+                  <configuration>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <releaseProfiles>release</releaseProfiles>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                  </configuration>
+                </plugin>
                 <plugin>
                     <groupId>org.eclipse.m2e</groupId>
                     <artifactId>lifecycle-mapping</artifactId> 
@@ -295,6 +314,13 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <distributionManagement>
+      <repository>
+        <id>bintray</id>
+        <url>https://api.bintray.com/maven/saltstack/jenkins-testing/github-oauth-saltstack</url>
+      </repository>
+    </distributionManagement>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
